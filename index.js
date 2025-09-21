@@ -16,8 +16,8 @@ import {
 } from "./datos.js";
 
 const servidor = express();
-const PORT = process.env.PORT || 3000;
 
+// 🔹 Middlewares
 servidor.use(cors());
 servidor.use(express.json());
 
@@ -131,3 +131,16 @@ servidor.use((req, res) => {
   res.status(404).json({ error: "recurso no encontrado" });
 });
 
+// 🔹 Crear usuario de prueba al iniciar servidor
+(async () => {
+  try {
+    await crearUsuario("vikis", "1234");
+    console.log("Usuario de prueba creado o ya existente");
+  } catch (error) {
+    console.error("Error creando usuario:", error);
+  }
+})();
+
+// 🔹 Iniciar servidor
+const PORT = process.env.PORT || 3000;
+servidor.listen(PORT, () => console.log(`Servidor escuchando en http://localhost:${PORT}`));
