@@ -5,8 +5,8 @@ import mongoose from "mongoose";
 
 // Conectar a MongoDB
 await mongoose.connect(process.env.DB_URI)
-  .then(() => console.log("✅ Conectado a MongoDB"))
-  .catch(err => console.error("❌ Error al conectar:", err));
+  .then(() => console.log(" Conectado a MongoDB"))
+  .catch(err => console.error(" Error al conectar:", err));
 
 // Definir esquema y modelo local
 const usuarioSchema = new mongoose.Schema({
@@ -23,7 +23,7 @@ async function listarUsuarios() {
       console.log(`- ID: ${u._id} | Usuario: ${u.usuario} | Contraseña: ${u.password}`);
     });
   } catch (error) {
-    console.error("❌ Error:", error);
+    console.error(" Error:", error);
   } finally {
     mongoose.connection.close();
   }
